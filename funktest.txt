@@ -1,0 +1,71 @@
+{{$cyborgRoles := (cslice "Cyborgs" "Cyborgs Subs" "Cyborgs Tryout" "Cyborgs Captain")}}
+{{$waterRoles := (cslice "Team Water" "Water Subs" "Water Tryout" "Water Captain")}}
+{{$stormRoles := (cslice "Team Storm" "Storm Subs" "Storm Tryout" "Storm Captain")}}
+{{$faunaRoles := (cslice "Fauna" "Fauna Subs" "Fauna Tryout" "Fauna Captain")}}
+{{$fireRoles := (cslice "Team Fire" "Fire Subs" "Fire Tryout" "Fire Captain")}}
+{{$ramenRoles := (cslice "Ramen" "Ramen Subs" "Ramen Tryout" "Ramen Captain")}}
+{{$voxRoles := (cslice "Team Vox" "Vox Subs" "Vox Tryout" "Vox Captain")}}
+
+{{$cyborgRolesDict := (sdict "cyborgs" "Cyborgs" "cyborg subs" "Cyborg Subs")}}
+{{$waterRolesDict := (sdict "cyborgs" "Cyborgs" "cyborg subs" "Cyborg Subs")}}
+
+{{$cyborgRolesDict.Get "cyborgs"}}
+
+{{if eq (len .Args) 3}}
+
+    {{$role := (index .CmdArgs 1)}}
+
+    {{if or (hasRoleName "Cyborgs Captain") (hasRoleName "Cyborgs GM") (hasRoleName "Staff")}}
+        {{if in $cyborgRoles $role}}
+            {{giveRoleName (userArg (index .CmdArgs 0)) $role}}
+            Gave :robot: {{$role}} to {{index .CmdArgs 0}}! :white_check_mark: 
+        {{end}}
+    {{end}}
+
+    {{if or (hasRoleName "Ramen Captain") (hasRoleName "Ramen GM") (hasRoleName "Staff")}}
+        {{if in $ramenRoles $role}}
+            {{giveRoleName (userArg (index .CmdArgs 0)) $role}}
+            Gave :ramen: {{$role}} to {{index .CmdArgs 0}}! :white_check_mark:
+        {{end}}
+
+    {{end}}
+
+    {{if or (hasRoleName "Water Captain") (hasRoleName "Water GM") (hasRoleName "Staff")}}
+        {{if in $waterRoles $role}}
+            {{giveRoleName (userArg (index .CmdArgs 0)) $role}}
+            Gave :ocean: {{$role}} to {{index .CmdArgs 0}}! :white_check_mark:
+        {{end}}
+    {{end}}
+
+    {{if or (hasRoleName "Storm Captain") (hasRoleName "Storm GM") (hasRoleName "Staff")}}
+        {{if in $stormRoles $role}}
+            {{giveRoleName (userArg (index .CmdArgs 0)) $role}}
+            Gave :thunder_cloud_rain: {{$role}} to {{index .CmdArgs 0}}! :white_check_mark:
+        {{end}}
+    {{end}}
+
+    {{if or (hasRoleName "Fauna Captain") (hasRoleName "Fauna GM") (hasRoleName "Staff")}}
+        {{if in $faunaRoles $role}}
+            {{giveRoleName (userArg (index .CmdArgs 0)) $role}}
+            Gave :paw_prints: {{$role}} to {{index .CmdArgs 0}}! :white_check_mark:
+        {{end}}
+    {{end}}
+
+    {{if or (hasRoleName "Fire Captain") (hasRoleName "Fire GM") (hasRoleName "Staff")}}
+        {{if in $fireRoles $role}}
+            {{giveRoleName (userArg (index .CmdArgs 0)) $role}}
+            Gave :fire: {{$role}} to {{index .CmdArgs 0}}! :white_check_mark:
+        {{end}}
+    {{end}}
+
+    {{if or (hasRoleName "Vox Captain") (hasRoleName "Vox GM") (hasRoleName "Staff")}}
+        {{if in $voxRoles $role}}
+            {{giveRoleName (userArg (index .CmdArgs 0)) $role}}
+            Gave :diamonds: {{$role}} to {{index .CmdArgs 0}}! :white_check_mark:
+        {{end}}
+    {{else}}
+        {{print "You either don't have permission to give out this role or have multiple management roles, skipping..."}}
+    {{end}}
+{{else}}
+    Correct usage of the command: -grant <target> "<rolename>"
+{{end}}
